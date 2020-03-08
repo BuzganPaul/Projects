@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>5_b</title>
+</head>
+
+<body background="backgrd.gif">
+<p ><font size=6 color="#00ff00">Subiectul 9</p> </font>
+<table border =1 bgcolor=white>
+<tr>
+  <th><a href="index.php">Index Page</a></th>
+  <th><a href="3_a.php">Exercitiul 3 A</a></th>
+  <th><a href="3_b.php">Exercitiul 3 B</a></th>
+  <th><a href="4_a.php">Exercitiul 4 A</a></th>
+  <th><a href="4_b.php">Exercitiul 4 B</a></th>
+  <th><a href="5_a.php">Exercitiul 5 A</a></th>
+  <th><a href="5_b.php">Exercitiul 5 B</a></th>
+  <th><a href="6_a.php">Exercitiul 6 A</a></th>
+  <th><a href="6_b.php">Exercitiul 6 B</a></th>
+</tr>
+</table>
+
+<div class=container align=center>
+
+<p align=left><font type=cortana size=5 color="#00ff00">9.05  Să se exprime în SQL fara functii de agregare urmatoarele interogari folosind cel putin o interogare imbricata si operatori de genul EXISTS,IN,ALL,ANY:</font></p> </br>
+    <font size=4 color="#00ff00">b) Să se găsească denumirea ingredientelor folosite în cantitatea mai mare decât
+ingredientul ’ciuperci’ în alte rețete decât rețeta cu numele ’tocăniță de ciuperci’.</font>
+ 
+<form action="5_b.php" method=post>   
+      
+<input type=submit value="Afiseaza" name="b"> 
+    
+</form></br></br></br>
+
+<?php
+include 'db_connection.php';
+
+$conn = OpenCon();	
+if(isset($_POST['b']))
+{					
+$sql = "SELECT ingredient1.ingredient\n"
+
+    . "	FROM Ingrediente ingredient1\n"
+
+    . "	WHERE ingredient1.ingred_id IN (SELECT setIngrediente2.ingred_id FROM Set_ingrediente setIngrediente2\n"
+
+    . "				  WHERE NOT EXISTS (SELECT setIngrediente3.cantitate FROM Set_ingrediente setIngrediente3 WHERE setIngrediente3.cantitate > setIngrediente2.cantitate\n"
+
+    . "                  AND setIngrediente3.ingred_id IN (SELECT ingrediente2.ingred_id FROM Ingrediente ingrediente2 WHERE ingrediente2.ingredient='ciuperci'))\n"
+
+    . "    AND setIngrediente2.reteta_id NOT IN (SELECT retete.reteta_id FROM reteta retete WHERE retete.nume = 'tocanita de ciuperci'))";
+	
+	$result = mysqli_query($conn,$sql) or die("<br>Bad Query: $sql"); 
+echo"<table border='2' bgcolor=white>";
+echo"<tr><td>ingredient</td></tr>";
+foreach($result as $item){
+	echo "<tr><td>{$item['ingredient']}</td></tr>";
+}
+CloseCon($conn);
+}
+?>
+</body>
+</html>

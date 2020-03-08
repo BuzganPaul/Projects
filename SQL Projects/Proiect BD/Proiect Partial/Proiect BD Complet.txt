@@ -1,0 +1,268 @@
+					SUBIECTUL 9
+
+9.01
+
+a.
+CREATE TABLE Categorie (
+    categ_id int NOT NULL,
+    tip varchar(255) NOT NULL
+);
+
+b.
+
+CREATE TABLE Reteta (
+    reteta_id int NOT NULL,
+    nume varchar(255) NOT NULL,
+    descriere varchar(255),
+    categ_id int,
+    vegetariana varchar(1) NOT NULL,
+    timp_preparare int,
+    portii int NOT NULL  
+);
+
+c.
+CREATE TABLE Set_ingrediente (
+    reteta_id int NOT NULL,
+    ingred_id int NOT NULL,
+    cantitate number(6, 3) NOT NULL,
+    um varchar(255) NOT NULL,
+    comentarii varchar(255)
+);
+
+d.
+CREATE TABLE Ingrediente (
+    ingred_id int NOT NULL,
+    ingredient varchar(255) NOT NULL
+);
+
+e.
+ALTER TABLE Categorie
+ADD CONSTRAINT PK_Categorie PRIMARY KEY(categ_id);
+
+ALTER TABLE Reteta
+ADD CONSTRAINT PK_Reteta PRIMARY KEY(reteta_id);
+ALTER TABLE Reteta
+ADD CONSTRAINT FK_Reteta FOREIGN KEY(categ_id) REFERENCES Categorie(categ_id);
+ALTER TABLE Reteta
+ADD CHECK (Vegetariana='D' OR Vegetariana='N');
+
+ALTER TABLE Set_ingrediente
+ADD CONSTRAINT PK_Set_ingrediente PRIMARY KEY(reteta_id,ingred_id)
+ADD CONSTRAINT FK_Set_ingrediente FOREIGN KEY(reteta_id) REFERENCES Reteta(reteta_id)
+ADD CONSTRAINT FK2_Set_ingrediente FOREIGN KEY(ingred_id) REFERENCES Ingrediente(ingred_id);
+
+ALTER TABLE Ingrediente
+ADD CONSTRAINT PK_Ingrediente PRIMARY KEY(ingred_id);
+
+f.
+ALTER TABLE Reteta
+ADD sursa varchar(255);
+
+
+9.02
+
+a.
+ALTER TABLE Set_ingrediente
+ADD CONSTRAINT ingred_units CHECK (um='gr' OR um='ml' OR um='buc' OR um='lingura' OR um='lingurita' OR um='cana');
+
+b.
+ALTER TABLE Reteta
+ADD CONSTRAINT reteta_vegetariana CHECK ((timp_preparare>15 AND vegetariana='N') OR (vegetariana='D'));
+9.03 
+
+a.
+SELECT nume, descriere, timp_preparare
+FROM Reteta
+WHERE vegetariana='D'
+ORDER BY timp_preparare DESC;
+
+b.
+SELECT *
+FROM Set_ingrediente
+WHERE comentarii IS NULL
+ORDER BY reteta_id, ingred_id;
+
+9.04
+
+a.
+SELECT A.nume AS nume1, B.nume AS nume2
+FROM Reteta A, Reteta B
+WHERE (A.categ_id=(SELECT categ_id FROM Categorie WHERE Tip='SUPA') OR A.categ_id=(SELECT categ_id FROM Categorie WHERE Tip='CIORBA'))
+AND B.categ_id!=(SELECT categ_id FROM Categorie WHERE Tip='SUPA')
+AND B.categ_id!=(SELECT categ_id FROM Categorie WHERE Tip='CIORBA');
+--facut cu self join
+
+b.
+SELECT DISTINCT Reteta.nume, Reteta.descriere
+FROM Reteta 
+JOIN Set_ingrediente ON Reteta.reteta_id = Set_ingrediente.reteta_id
+WHERE Reteta.nume!=ALL(SELECT Reteta.nume FROM Reteta 
+JOIN Set_ingrediente ON Reteta.reteta_id = Set_ingrediente.reteta_id
+WHERE Set_ingrediente.ingred_id=(SELECT ingred_id FROM Ingrediente WHERE ingredient='ciuperci'));
+
+9.05
+
+a.
+SELECT reteta1.nume, reteta1.descriere, reteta1.timp_preparare
+	FROM reteta reteta1
+	WHERE (reteta1.vegetariana = 'D') AND NOT EXISTS (SELECT timp_preparare FROM reteta reteta2 WHERE reteta2.timp_preparare < reteta1.timp_preparare);
+
+b.
+
+ SELECT ingredient1.ingredient
+	FROM Ingrediente ingredient1
+	WHERE ingredient1.ingred_id IN (SELECT setIngrediente2.ingred_id FROM Set_ingrediente setIngrediente2
+				  WHERE NOT EXISTS (SELECT setIngrediente3.cantitate FROM Set_ingrediente setIngrediente3 WHERE setIngrediente3.cantitate > setIngrediente2.cantitate
+                  AND setIngrediente3.ingred_id IN (SELECT ingrediente2.ingred_id FROM Ingrediente ingrediente2 WHERE ingrediente2.ingredient='ciuperci'))
+    AND setIngrediente2.reteta_id NOT IN (SELECT retete.reteta_id FROM reteta retete WHERE retete.nume = 'tocanita de ciuperci'));
+
+
+
+9.06
+
+a.
+SELECT c.tip, AVG(r.timp_preparare)
+FROM Reteta r, Categorie c
+WHERE r.categ_id=c.categ_id
+GROUP BY c.tip;
+
+
+b.
+
+SELECT Reteta.Nume, Set_ingrediente.Cantitate
+FROM Reteta 
+JOIN Set_ingrediente ON Reteta.reteta_id = Set_ingrediente.reteta_id
+WHERE Set_ingrediente.cantitate=(SELECT MAX(cantitate) FROM Set_ingrediente WHERE ingred_id=(SELECT ingred_id FROM Ingrediente WHERE Ingredient='usturoi')) AND Reteta.reteta_id=ANY(SELECT reteta_id FROM Reteta WHERE categ_id=(SELECT categ_id FROM Categorie WHERE tip='CIORBA'));
+
+9.07
+
+a.
+
+INSERT INTO Categorie (categ_id, tip)
+VALUES (1, 'FEL PRINCIPAL');
+
+INSERT INTO Reteta (reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii)
+VALUES ('12', 'Beef Stroganoff', '', 1, 'N', NULL, 2);
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (1, 'mu?chi de vitã');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (2, 'mu?tar de Dijon');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (3, 'smântânã');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('12', '1', 500, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('12', '2', 1, 'lingura', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('12', '3', 250, 'ml', '');
+
+
+b.
+DELETE FROM Categorie WHERE categ_id!=ALL(SELECT categ_id FROM Reteta);
+
+c.
+
+UPDATE Set_ingrediente
+SET cantitate=cantitate/2, um='lingura'
+ WHERE um LIKE '%lingurita%';
+ 
+ALTER TABLE Set_ingrediente
+DROP CONSTRAINT ingred_units ;
+
+ALTER TABLE Set_ingrediente
+ADD CONSTRAINT ingred_units CHECK (um='gr' OR um='ml' OR um='buc' OR um='lingura' OR um='cana');
+
+select * from set_ingrediente;
+
+9.08
+
+a.
+drop trigger insertbuc_trigger;
+
+CREATE OR REPLACE TRIGGER insertbuc_trigger
+BEFORE INSERT ON Set_ingrediente
+FOR EACH ROW
+BEGIN 
+  IF :new.um='buc' AND :new.cantitate != ROUND(:new.cantitate, 0) THEN 
+ :new.cantitate := ROUND(:new.cantitate, 0);
+  END IF;
+END;
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('27', '21', 2.11, 'buc', '');
+
+select * from set_ingrediente
+WHERE reteta_id=27 AND ingred_id=21;
+
+b.
+
+drop trigger update_trigger;
+
+CREATE OR REPLACE TRIGGER veg_update_trigger
+
+BEFORE UPDATE OF TIMP_PREPARARE ON RETETA FOR EACH ROW
+
+WHEN (OLD.TIMP_PREPARARE > NEW.TIMP_PREPARARE AND NEW.VEGETARIANA = 'N')
+
+
+DECLARE
+
+NR_INGRED INTEGER;
+
+
+BEGIN
+
+SELECT COUNT(*) INTO NR_INGRED 
+FROM SET_INGREDIENTE
+WHERE  RETETA_ID = :NEW.RETETA_ID;
+IF NR_INGRED > 3 
+THEN
+ 
+RAISE_APPLICATION_ERROR(-20502,'NU SE POATE MICSORA TIMPUL DE PREPARARE PENTRU RETETELE NONVEGETARIANE CU MAI MULT DE 3 INGREDIENTE');
+
+END IF;
+
+END;
+
+UPDATE Reteta
+SET timp_preparare=5
+WHERE  reteta_id=34;
+
+c.
+
+DROP VIEW Retete_Vegetariene;
+
+CREATE VIEW Retete_Vegetariene AS
+SELECT tip, nume AS reteta, descriere, timp_preparare, portii, ingredient,
+cantitate, um, comentarii
+FROM Categorie NATURAL JOIN Reteta NATURAL JOIN
+Set_ingrediente NATURAL JOIN Ingrediente
+WHERE vegetariana = 'D';
+
+DROP trigger view_trigger;
+
+CREATE OR REPLACE TRIGGER view_trigger
+INSTEAD OF INSERT ON Retete_Vegetariene
+FOR EACH ROW
+DECLARE
+reteta_numarul INTEGER;
+BEGIN
+  INSERT INTO Categorie(categ_id, tip)
+  VALUES(101, :new.tip);
+  INSERT INTO Reteta(reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii, sursa)
+  VALUES(102, :new.reteta, :new.descriere, 101, 'D', :new.timp_preparare,:new.portii, ' ');
+  INSERT INTO Ingrediente(ingred_id, ingredient)
+  VALUES(103, :new.ingredient);
+  INSERT INTO Set_ingrediente(reteta_id, ingred_id, cantitate, um, comentarii)
+  VALUES(102, 103, :new.cantitate,:new.um,:new.comentarii);
+END;
+
+
+INSERT INTO Retete_Vegetariene(tip, nume, descriere, timp_preparare, portii, ingredient,
+cantitate, um, comentarii)
+VALUES('Test view inesert1', 'Test view inesert1', 'Test view inesert1', 99, 99, 'Test view inesert1', 99, 'gr', 'Test view inesert1');

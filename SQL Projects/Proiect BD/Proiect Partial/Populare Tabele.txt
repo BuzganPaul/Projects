@@ -1,0 +1,256 @@
+preventiv
+
+INSERT INTO Categorie (categ_id, tip)
+VALUES (1, 'FEL PRINCIPAL');
+
+INSERT INTO Categorie (categ_id, tip)
+VALUES (3, 'DESERT');
+
+INSERT INTO Categorie (categ_id, tip)
+VALUES (2, 'APERITIV');
+
+INSERT INTO Categorie (categ_id, tip)
+VALUES (4, 'CIORBA');
+
+INSERT INTO Categorie (categ_id, tip)
+VALUES (5, 'SUPA');
+
+INSERT INTO Categorie (categ_id, tip)
+VALUES (6, 'BAUTURA');
+
+INSERT INTO Categorie (categ_id, tip)
+VALUES (7, 'SALATE');
+
+
+
+
+
+INSERT INTO Reteta (reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii)
+VALUES ('15', 'Gratar Pui', 'Atent asezonat cu condimente', 1, 'N', 20, 1);
+
+INSERT INTO Reteta (reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii)
+VALUES ('17', 'Cartofi prajiti', 'fara sare', 2, 'D', 17, 1);
+
+INSERT INTO Reteta (reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii)
+VALUES ('20', 'tocanita ciuperci', '', 1, 'D', 40, 2);
+
+INSERT INTO Reteta (reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii, sursa)
+VALUES ('34', 'Supa Specialitatea casei', 'Contine cele mai proaspete legume.', 5, 'N', 10, 1, 'Jean DeSerena');
+
+INSERT INTO Reteta (reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii)
+VALUES ('22', 'Ciorba de fasole', '', 4, 'D', 30, 2);
+
+INSERT INTO Reteta (reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii)
+VALUES ('27', 'Ciorba de usturoi', '', 4, 'D', 30, 2);
+
+INSERT INTO Reteta (reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii)
+VALUES ('23', 'Ciorba de legume', 'Contine cele mai proaspete legume.', 4, 'D', 40, 3);
+
+INSERT INTO Reteta (reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii)
+VALUES ('47', 'Apa minerala', 'Cu un pret mult mai mare fata de magazin sau producator pt ca putem.', 6, 'D', '',1);
+
+INSERT INTO Reteta (reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii)
+VALUES ('46', 'Apa plata', 'Cu un pret mult mai mare fata de magazin sau producator pt ca putem.', 6, 'D', '',1);
+
+INSERT INTO Reteta (reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii)
+VALUES ('43', 'Bere', 'Cu un pret mult mai mare fata de magazin sau producator pt ca putem.', 6, 'D', '',1);
+
+INSERT INTO Reteta (reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii)
+VALUES ('44', 'Suc de portocale', 'Cu un pret mult mai mare fata de magazin sau producator pt ca putem.', 6, 'D', '',1);
+
+INSERT INTO Reteta (reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii)
+VALUES ('18', 'Mamaliga', '', 2, 'D', 22, 2);
+
+INSERT INTO Reteta (reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii)
+VALUES ('19', 'Cartofi la cuptor', '', 2, 'D', 22, 1);
+
+INSERT INTO Reteta (reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii, sursa)
+VALUES ('31', 'Cotlet de porc', 'Foarte bun', 1, 'N', 15, 1, 'Din popor');
+
+INSERT INTO Reteta (reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii, sursa)
+VALUES ('33', 'Pizza', 'Foarte buna', 1, 'N', 20, 1, 'Din italia.');
+
+INSERT INTO Reteta (reteta_id, nume, descriere, categ_id, vegetariana, timp_preparare, portii, sursa)
+VALUES ('35', 'Pizza Vegetariana', 'Foarte buna', 1, 'D', 20, 1, 'Din italia dar vegetariana.');
+
+
+
+
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (4, 'aluat');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (5, 'usturoi');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (6, 'ciuperci');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (7, 'carne de porc');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (8, 'carne de pui');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (9, 'sos de rosii');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (10, 'varza');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (11, 'fasole');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (12, 'rosii');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (14, 'conopida');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (15, 'castraveti');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (16, 'branza');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (17, 'ulei');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (18, 'sare');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (19, 'condimente');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (20, 'carne supriza');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (21, 'cartofi');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (22, 'porumb');
+
+INSERT INTO Ingrediente (ingred_id, ingredient)
+VALUES (23, 'lapte');
+
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('15', '8', 400, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('15', '19', 1, 'lingura', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('15', '18', 11, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('17', '21', 300, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('17', '17', 100, 'ml', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('20', '6', 150, 'gr', 'cele mai bune ciuperci');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('20', '19', 20, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('20', '9', 50, 'ml', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('20', '5', 5, 'buc', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('34', '20', 200, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('34', '5', 10, 'buc', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('34', '14', 100, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('34', '17', 10, 'ml', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('22', '11', 150, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('22', '5', 12, 'buc', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('22', '12', 120, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('23', '12', 500, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('23', '14', 50, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('23', '15', 100, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('23', '21', 110, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('18', '23', 200, 'ml', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('18', '22', 300, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('19', '21', 300, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('19', '16', 100, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('19', '5', 2, 'buc', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('31', '7', 1, 'buc', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('31', '19', 2, 'lingura', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('31', '18', 1, 'lingura', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('33', '4', 300, 'gr', 'cel mai pufos aluat din lume');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('35', '4', 300, 'gr', 'cel mai pufos aluat din lume');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('34', '8', 200, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('34', '9', 200, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('34', '7', 200, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('34', '16', 200, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('35', '16', 200, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('35', '22', 200, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('35', '10', 200, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('35', '21', 200, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('35', '6', 200, 'gr', '');
+
+INSERT INTO Set_ingrediente (reteta_id, ingred_id, cantitate, um, comentarii)
+VALUES ('27', '19', 2, 'lingurita', '');
