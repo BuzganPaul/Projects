@@ -1,0 +1,6 @@
+Chitanta numarul: 7812
+A fost inregistrata comanda pentru:  Hartie  X 25
+Pret total: 2625 lei 
+Nume destinatar:  I. L. Caragiale  
+Adresa destinatar:  Str Scriitorilor Clasici  
+Multumim ca ati comandat de la noi!  
