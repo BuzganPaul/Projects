@@ -1,0 +1,41 @@
+# File produced by Open Asset Import Library (http://www.assimp.sf.net)
+# (assimp v5.0.639693989)
+
+newmtl rep_ven_turrets
+Kd 0.80000001 0.80000001 0.80000001
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ke 0 0 0
+Tf 0 0 0
+d 1
+Ns 20
+illum 2
+map_Kd rep_ven_turrets.png
+#map_Ks rep_ven_turrets.jpg
+#map_Bumo rep_ven_turrets.jpg
+
+newmtl Capital_Repvenator_CL
+Kd 0.80000001 0.80000001 0.80000001
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ke 0 0 0
+Tf 0 0 0
+d 1
+Ns 20
+illum 2
+map_Kd Capital_Repvenator_CL.png
+#map_Ks Capital_Repvenator_CL.jpg
+#map_Bump Capital_Repvenator_CL.jpg
+
+newmtl BLUETHRUSTER_CL
+Kd 0.80000001 0.80000001 0.80000001
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ke 0 0 0
+Tf 0 0 0
+d 1
+Ns 20
+illum 2
+map_Kd BLUETHRUSTER_CL.png
+#map_Ks BLUETHRUSTER_CL.jpg
+#map_Bump BLUETHRUSTER_CL.jpg

@@ -1,0 +1,69 @@
+# File produced by Open Asset Import Library (http://www.assimp.sf.net)
+# (assimp v5.0.639693989)
+
+newmtl Wire
+Kd 0.37574032 0.37574032 0.37574032
+Ka 0 0 0
+Ks 1 1 1
+Ns 50
+illum 2
+
+newmtl Blade
+Kd 0.014668175 0.0018972192 0.0077186236
+Ka 0 0 0
+Ks 1 1 1
+Ns 50
+illum 2
+map_Kd Procedural,num=0,type=Marble
+
+newmtl Body
+Kd 0.15742885 0.15742885 0.15742885
+Ka 0 0 0
+Ks 1 1 1
+Ns 50
+illum 2
+
+newmtl Eye
+Kd 1 1 1
+Ka 0 0 0
+Ks 1 1 1
+Ke 4 4 4
+Ns 50
+illum 2
+
+newmtl Paint
+Kd 0.066803403 0.042045914 0.018961303
+Ka 0 0 0
+Ks 1 1 1
+Ns 50
+illum 2
+
+newmtl Joint
+Kd 0.049546532 0.049546532 0.049546532
+Ka 0 0 0
+Ks 1 1 1
+Ns 50
+illum 2
+
+newmtl Gun
+Kd 0.003641506 0.003641506 0.003641506
+Ka 0 0 0
+Ks 1 1 1
+Ns 50
+illum 2
+
+newmtl Material.003
+Kd 0.063717499 0.063717499 0.063717499
+Ka 0 0 0
+Ks 1 1 1
+Ns 50
+illum 2
+
+newmtl Ball.002
+Kd 1 0 0.019485474
+Ka 0 0 0
+Ks 1 1 1
+Ke 3 0 0.058456421
+Ns 50
+illum 2
+
