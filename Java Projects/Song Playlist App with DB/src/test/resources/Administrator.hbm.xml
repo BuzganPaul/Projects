@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 12, 2020 7:57:49 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="DataLayer.Administrator" table="ADMINISTRATOR">
+        <id name="adminID" type="int" access="field">
+            <column name="adminID" />
+            <generator class="native" />
+        </id>
+        <property name="usernameAdmin" type="java.lang.String">
+            <column name="usernameAdmin" />
+        </property>
+        <property name="passwordAdmin" type="java.lang.String">
+            <column name="passwordAdmin" />
+        </property>
+    </class>
+</hibernate-mapping>

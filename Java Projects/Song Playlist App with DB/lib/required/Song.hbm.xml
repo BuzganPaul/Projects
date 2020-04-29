@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 12, 2020 7:57:49 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="DataLayer.Song" table="SONG">
+        <id name="songID" type="int" access="field">
+            <column name="songID" />
+            <generator class="native" />
+        </id>
+        <property name="songName" type="java.lang.String">
+            <column name="songName" />
+        </property>
+        <property name="songArtist" type="java.lang.String">
+            <column name="songArtist" />
+        </property>
+        <property name="genre" type="java.lang.String">
+            <column name="genre" />
+        </property>
+        <property name="views" type="int">
+            <column name="views" />
+        </property>
+    </class>
+</hibernate-mapping>
