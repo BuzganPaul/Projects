@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 12, 2020 7:57:49 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="Server.DataLayer.Playlist" table="PLAYLIST">
+        <id name="playlistID" type="int" access="field">
+            <column name="playlistID" />
+            <generator class="native" />
+        </id>
+        <property name="playlistName" type="java.lang.String">
+            <column name="playlistName" />
+        </property>
+        <property name="regularID" type="int">
+            <column name="regularID" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 10, 2020 2:25:49 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="Server.DataLayer.Message" table="MESSAGE">
+        <id name="messageID" type="int">
+            <column name="messageID" />
+            <generator class="native" />
+        </id>
+        <property name="friendsID" type="int">
+            <column name="friendsID" />
+        </property>
+        <property name="songID" type="int">
+            <column name="songID" />
+        </property>
+    </class>
+</hibernate-mapping>

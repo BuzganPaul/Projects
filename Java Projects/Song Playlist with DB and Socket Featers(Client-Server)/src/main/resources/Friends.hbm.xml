@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 10, 2020 2:23:07 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="Server.DataLayer.Friends" table="FRIENDS">
+        <id name="friendsID" type="int" access="field">
+            <column name="friendsID" />
+            <generator class="native" />
+        </id>
+        <property name="regularID1" type="int">
+            <column name="regularID1" />
+        </property>
+        <property name="regularID2" type="int">
+            <column name="regularID2" />
+        </property>
+    </class>
+</hibernate-mapping>
