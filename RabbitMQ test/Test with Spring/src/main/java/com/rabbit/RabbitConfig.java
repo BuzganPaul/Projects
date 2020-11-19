@@ -4,6 +4,7 @@ package com.rabbit;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -28,6 +29,7 @@ public class RabbitConfig {
 
     @Bean
     Queue queue(){
+        System.out.println("AICI");
         return new Queue(queueName, true);
     }
 
@@ -41,24 +43,24 @@ public class RabbitConfig {
         return BindingBuilder.bind(queue).to(exchange).with(routingKey);
     }
 
-//    @Bean
-//    MessageConverter jsonMessageConverter(){
-//        return new Jackson2JsonMessageConverter();
-//    }
-//
-//    @Bean
-//    public AmqpTemplate rabbitTemplate(ConnectionFactory connectionFactory){
-//        final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-//        rabbitTemplate.setMessageConverter(jsonMessageConverter());
-//        return rabbitTemplate;
-//    }
-//
-//    @Bean
-//    public ConnectionFactory connectionFactory(){
-//
-//        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
-//        connectionFactory.setUsername("guest");
-//        connectionFactory.setPassword("guest");
-//        return connectionFactory;
-//    }
+    @Bean
+    MessageConverter jsonMessageConverter(){
+        return new Jackson2JsonMessageConverter();
+    }
+
+    //@Bean
+    public AmqpTemplate rabbitTemplate(ConnectionFactory connectionFactory){
+        final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(jsonMessageConverter());
+        return rabbitTemplate;
+    }
+
+    @Bean
+    public ConnectionFactory connectionFactory(){
+
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
+        connectionFactory.setUsername("guest");
+        connectionFactory.setPassword("guest");
+        return connectionFactory;
+    }
 }

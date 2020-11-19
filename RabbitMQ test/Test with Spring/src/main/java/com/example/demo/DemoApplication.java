@@ -22,9 +22,9 @@ public class DemoApplication {
     public static void main(String[] args) throws InterruptedException, IOException {
         SpringApplication.run(DemoApplication.class, args);
         Producer producer = new Producer();
-        producer.produceMsg("MESAJ");
-        Thread.sleep(5000);
-        producer.produceMsg("MESAJ");
+        //producer.produceMsg("MESAJ");
+        Thread.sleep(1000);
+        //producer.produceMsg("MESAJ");
 
     }
 

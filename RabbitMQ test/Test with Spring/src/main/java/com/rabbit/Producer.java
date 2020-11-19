@@ -10,6 +10,7 @@ import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,10 @@ import java.io.IOException;
 @Component
 public class Producer {
 
-    private AmqpTemplate amqpTemplate = rabbitTemplate(connectionFactory());
+    //private AmqpTemplate amqpTemplate = rabbitTemplate(connectionFactory());
+
+    @Autowired
+    AmqpTemplate amqpTemplate;
 
     @Value("${rabbitmq.queue}")
     private String queueName;
@@ -30,48 +34,29 @@ public class Producer {
     @Value("${rabbitmq.routingkey}")
     private String routingKey;
 
-    public Producer() throws IOException {
-    }
-
-    public void open(String msg){
-        this.amqpTemplate.convertAndSend(exchange, routingKey, msg);
-        System.out.println("Send msg = " + msg);
-    }
 
     public void produceMsg(String msg){
         this.amqpTemplate.convertAndSend(exchange, routingKey, msg);
-        //this.amqpTemplate.
         System.out.println("Send msg = " + msg);
     }
 
 
-    public AmqpTemplate rabbitTemplate(ConnectionFactory connectionFactory) throws IOException {
-        //Channel channel = connectionFactory.createChannel();
-        //channel.queueDeclare(queueName, false, false, false, null);
-        final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(jsonMessageConverter());
+//    public AmqpAdmin amqpAdmin(ConnectionFactory connectionFactory) {
+//        return new RabbitAdmin(connectionFactory);
+//    }
+//
+//    MessageConverter jsonMessageConverter(){
+//        return new Jackson2JsonMessageConverter();
+//    }
 
-        amqpAdmin(connectionFactory).declareQueue(queue());
-
-        return rabbitTemplate;
-    }
-
-    public AmqpAdmin amqpAdmin(ConnectionFactory connectionFactory) {
-        return new RabbitAdmin(connectionFactory);
-    }
-
-    MessageConverter jsonMessageConverter(){
-        return new Jackson2JsonMessageConverter();
-    }
-
-    public ConnectionFactory connectionFactory() {
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
-        connectionFactory.setUsername("guest");
-        connectionFactory.setPassword("guest");
-        return connectionFactory;
-    }
-
-    Queue queue(){
-        return new Queue("MyRabbitQueue2", true);
-    }
+//    public ConnectionFactory connectionFactory() {
+//        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
+//        connectionFactory.setUsername("guest");
+//        connectionFactory.setPassword("guest");
+//        return connectionFactory;
+//    }
+//
+//    Queue queue(){
+//        return new Queue("MyRabbitQueue2", true);
+//    }
 }
